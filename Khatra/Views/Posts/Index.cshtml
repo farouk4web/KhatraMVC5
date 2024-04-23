@@ -1,0 +1,39 @@
+﻿@using Khatra.Resources.ViewsResources
+
+@model IEnumerable<Khatra.Models.Post>
+@{
+    /**/
+
+    ViewBag.Title = global.Posts;
+}
+
+<div class="posts">
+
+    <div class="container">
+        <h2>@global.Posts</h2>
+
+        @if (Model.Count() == 0)
+        {
+            <div class="alert alert-danger">
+                @global.NoPostsMsg
+            </div>
+        }
+        else
+        {
+            <div class="row">
+
+                @foreach (var post in Model)
+                {
+                    <div class="col-sm-4">
+                        @Html.Partial("_post", post)
+                    </div>
+                }
+
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/postActions")
+}

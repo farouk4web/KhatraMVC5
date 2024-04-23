@@ -1,0 +1,81 @@
+﻿@using Khatra.Resources.ModelsResources
+@using Khatra.Resources.ViewsResources
+
+@model Khatra.Models.ContactForm
+@{
+    ViewBag.Title = global.contact;
+}
+
+<div class="contact center-xs-sm">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+                <h2 class="h1">@global.ContactWithUs</h2>
+
+                <p>
+                    <i class="fa fa-map-marker"></i> @global.Address :
+                    @global.AddressContent
+                </p>
+                <p>
+                    <i class="fa fa-envelope"></i> @fields.Email : 
+                    <a href="mailto:Contact@khatra.com">Contact@khatra.com</a>
+                </p>
+                <p>
+                    <i class="fa fa-phone"></i> @fields.Phone : 
+                    <a href="tel:201118179885">201118179885</a>
+                </p>
+
+                <div class="socialMedia">
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fa fa-facebook fa-fw fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter fa-fw fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram fa-fw fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest fa-fw fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin fa-fw fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus fa-fw fa-lg"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                @if (ViewBag.sentMsgState == true)
+                {
+                    <div class="alert alert-success">
+                        @global.MsgSent
+                    </div>
+                }
+
+                @using (Html.BeginForm("Contact", "Home"))
+                {
+                    @Html.ValidationSummary(true, "Please Fix Bugs First")
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control input-lg", placeholder = fields.Name })
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-lg", placeholder = fields.Email })
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Supject, new { @class = "form-control input-lg", placeholder = fields.Supject })
+                        @Html.ValidationMessageFor(m => m.Supject)
+                    </div>
+                    <div class="form-group">
+                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control input-lg", placeholder = fields.Message, rows = 7 })
+                        @Html.ValidationMessageFor(m => m.Message)
+                    </div>
+                    <div class="form-group text-center">
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="@global.Send" class="btn btn-success siteBtn" />
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

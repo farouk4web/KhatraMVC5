@@ -1,0 +1,18 @@
+﻿@using Khatra.Resources.ViewsResources
+
+@{
+    ViewBag.Title = global.SuccessConfirmeEmail;
+}
+<div class="confirmEmail text-center">
+    <div class="container">
+
+        <h2>@ViewBag.Title</h2>
+        <i class="fa fa-check-circle-o fa-4x"></i>
+        <div>
+            <p class="lead">
+                @global.SuccessConfirmeEmailMsg. @Html.ActionLink(global.ClickheretoLogin, "Login", "Account", null, new { id = "loginLink" })
+            </p>
+        </div>
+
+    </div>
+</div>

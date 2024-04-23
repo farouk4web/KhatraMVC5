@@ -1,0 +1,61 @@
+﻿@using Khatra.Resources.ModelsResources
+@using Khatra.Resources.ViewsResources
+
+@model Khatra.Models.RegisterViewModel
+@{
+    ViewBag.Title = global.Register;
+}
+
+<div class="register">
+    <div class="container">
+
+        <div class="form">
+            <h2 class="text-center">@global.Register</h2>
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.ValidationSummary(true, global.ErrorsFirst, new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control input-lg", placeholder = fields.FullName })
+                    @Html.ValidationMessageFor(m => m.FullName)
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-lg", placeholder = fields.Email })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control input-lg", placeholder = fields.Password })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-lg", placeholder = fields.ConfirmPassword })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+
+                <div class="form-group">
+                    <input type="file" name="userImage" class="form-control input-lg" />
+                </div>
+
+                <div class="form-group">
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="@global.Register" class="btn" />
+                </div>
+
+                <p>
+                    @global.haveAccount <a href="/account/login">@global.Login</a>
+                </p>
+
+            }
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,48 @@
+﻿@using Khatra.Resources.ViewsResources
+
+@model IEnumerable<Khatra.Models.Comment>
+@{
+    ViewBag.Title = global.Comments;
+}
+<div class="comments">
+
+    <div class="container">
+        <p class="lead">
+            @global.AllCommentsOnAllPosts ---
+            <b>@Model.Count()</b> <span> @global.Comment</span>
+        </p>
+        @if (Model.Count() == 0)
+        {
+            <div class="alert alert-danger">
+                @global.NoCommentsMsg
+            </div>
+        }
+        @foreach (var comment in Model)
+        {
+            <div class="comment">
+                <div class="row">
+                    <div class="col-sm-3 col-md-2">
+                        <img src="@comment.User.UserImageSrc" alt="Alternate Text" class="userImg" />
+                    </div>
+                    <div class="col-sm-9 col-md-10">
+                        <h4>@global.Post: <a href="/posts/read/@comment.PostId">@comment.Post.Title</a></h4>
+                        <span>@comment.PublishedDate</span>
+                        <h5><a href="/users/account/@comment.UserId">@comment.User.FullName</a></h5>
+
+                        <p>
+                            @comment.Content
+                        </p>
+                        <div class="actions txtEnd">
+                            <a href="/comments/edit/@comment.Id"><i class="fa fa-edit fa-lg"></i></a>
+                            <a href="#" class="js_remove_comment" data-id="@comment.Id"><i class="fa fa-trash-o fa-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/comments")
+}

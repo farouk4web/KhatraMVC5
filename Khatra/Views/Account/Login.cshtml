@@ -1,0 +1,60 @@
+﻿@using Khatra.Resources.ModelsResources
+@using Khatra.Resources.ViewsResources
+
+@using Khatra.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = global.Login;
+}
+
+<div class="login">
+    <div class="container">
+
+        <div class="form">
+            <h2 class="text-center">@global.Login</h2>
+
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-lg", placeholder = fields.Email })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control input-lg", placeholder = fields.Password })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="@global.Login" class="btn btn-default" />
+                </div>
+
+                <p>
+                    @Html.ActionLink(global.RegisterAsNew, "Register")
+                </p>
+                <p>
+                    @Html.ActionLink(global.Forgotpassword, "ForgotPassword")
+                </p>
+            }
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@*<section id="socialLoginForm">
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </section>*@

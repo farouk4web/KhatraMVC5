@@ -1,0 +1,78 @@
+﻿@using Khatra.Resources.ViewsResources
+
+@{
+    ViewBag.Title = global.about;
+}
+
+<div class="about center-xs-sm">
+    <div class="aboutSite">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5">
+                    <img src="~/Content/Images/mocup.png" alt="Alternate Text" class="img-responsive" />
+                </div>
+                <div class="col-sm-7">
+                    <h1 class="h1">@global.appName</h1>
+
+                    <p>
+                        <strong>@global.appName</strong>
+                        @global.AboutSite1,
+                    </p>
+                    <p>
+                        @global.AboutSite2.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="aboutFounder">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <h2>@global.developer</h2>
+
+                    <p class="lead">
+                        @global.AboutFounder1
+                    </p>
+
+                    <p class="lead">
+                        @global.AboutFounder2
+                    </p>
+
+                    <p class="lead">
+                        @global.AboutFounder3
+                        <a href="https://farouk4web.github.io/" target="_blank">@global.here</a>
+                    </p>
+
+                </div>
+
+                <div class="col-sm-5">
+                    <img src="~/Content/Images/founder.png" alt="Alternate Text" />
+
+                    <div class="socialMedia text-center">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="https://linkedin.com/in/farouk4web" target="_blank">
+                                    <i class="fa fa-linkedin fa-fw fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/farouk4web" target="_blank">
+                                    <i class="fa fa-twitter fa-fw fa-lg"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://facebook.com/farouk4web2" target="_blank">
+                                    <i class="fa fa-facebook fa-fw fa-lg"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,168 @@
+﻿@using Khatra.Resources.ViewsResources
+@using Microsoft.AspNet.Identity
+@using Khatra.Models
+
+@model Khatra.Models.ApplicationUser
+@{
+    ViewBag.Title = Model.FullName;
+}
+
+<div class="account text-center">
+    <div class="container">
+
+        <div class="user">
+            <div class="row">
+                <div class="col-sm-6">
+                    <img src="@Model.UserImageSrc" alt="" class="img-circle userImg @ViewBag.isAdmin @ViewBag.isPublisher" />
+                    <h3>@Model.FullName</h3>
+                    
+                    @if (User.IsInRole(RoleName.Admins) || User.Identity.GetUserId() == Model.Id)
+                    {
+                        <h5>@global.Email: @Model.Email</h5>
+                    }
+                    
+                    @if (User.Identity.IsAuthenticated && User.Identity.GetUserId() == Model.Id)
+                    {
+                        <div class="accountSittengs">
+                            <i class="fa fa-camera" id="imageButton" title="@global.ChangePersonalImage"></i>
+                            @using (Html.BeginForm("ChangePersonalImage", "Manage", FormMethod.Post, new { enctype = "multipart/form-data", id = "formImage", @class = "hidden" }))
+                            {
+                                <input type="file" name="personalImage" id="ImageInput" />
+                            }
+                            &nbsp;
+                            &nbsp;
+                            <a href="/Manage/ChangePassword">
+                                <i class="fa fa-key" id="imageButton" title="@global.ChangePassword"></i>
+                            </a>
+                        </div>
+                    }
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="about-me">
+                        @if (User.Identity.IsAuthenticated && User.Identity.GetUserId() == Model.Id)
+                        {
+                            <div class="txtEnd">
+                                @Html.ActionLink(global.Update, "AboutMe", "Manage")
+                            </div>
+                        }
+                        <p class="lead">
+                            @Model.AboutMe
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="UserStatistics">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5><i class="fa fa-tasks"></i> @Model.Posts.Count() @global.Posts</h5>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5><i class="fa fa-comments-o"></i> @Model.Comments.Count() @global.Comments</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr />
+
+        @if (User.IsInRole(RoleName.Admins) && User.Identity.GetUserId() != Model.Id)
+        {
+            <div class="actions">
+                <div class="row">
+                    <div class="col-sm-4">
+                        @if (ViewBag.isAdmin == true)
+                        {
+                            <form action="/Users/RemoveUserFromRole/" method="post">
+                                <input type="hidden" name="roleName" value="@RoleName.Admins" />
+                                <input type="hidden" name="userId" value="@Model.Id" />
+
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-remove"></i> @global.RemoveFromAdmins
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form action="/Users/AddUserToRole/" method="post">
+                                <input type="hidden" name="roleName" value="@RoleName.Admins" />
+                                <input type="hidden" name="userId" value="@Model.Id" />
+
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-plus"></i> @global.AddToAdmins
+                                </button>
+                            </form>
+                        }
+                    </div>
+
+                    <div class="col-sm-4">
+                        @if (ViewBag.isPublisher == true)
+                        {
+                            <form action="/Users/RemoveUserFromRole/" method="post">
+                                <input type="hidden" name="roleName" value="@RoleName.Publishers" />
+                                <input type="hidden" name="userId" value="@Model.Id" />
+
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-remove"></i> @global.RemoveFromPublisher
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form action="/Users/AddUserToRole/" method="post">
+                                <input type="hidden" name="roleName" value="@RoleName.Publishers" />
+                                <input type="hidden" name="userId" value="@Model.Id" />
+
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-plus"></i> @global.AddToPublisher
+                                </button>
+                            </form>
+                        }
+                    </div>
+
+                    <div class="col-sm-4">
+                        <a href="/Users/Remove/@Model.Id" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-trash"></i> @global.Remove
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <hr />
+
+
+        @if (Model.Posts.Count() == 0)
+        {
+            <div class="alert alert-info">
+                <p class="lead">
+                    @global.UserDontHavePosts
+                </p>
+            </div>
+        }
+        <div class="row">
+            @foreach (var post in Model.Posts)
+            {
+                <div class="col-sm-4">
+                    @Html.Partial("_Post", post)
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/postActions")
+}

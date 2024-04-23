@@ -1,0 +1,46 @@
+﻿@using Khatra.Resources.ViewsResources
+@using Microsoft.AspNet.Identity
+@using Khatra.Models
+
+@model Khatra.Models.Post
+
+<div class="post text-center">
+    <a href="/posts/read/@Model.Id" class="window_link"></a>
+
+    <div class="imgPost">
+        <img src="~/Uploads/Posts/@Model.ImageSrc" alt="@Model.Title" />
+    </div>
+
+    <div class="postInfo">
+        <div class="category">
+            <a href="/Categories/AllPosts/@Model.CategoryId" class="categoryName">
+                @Model.Category.Name
+            </a>
+        </div>
+
+        <h4 class="post_title">@Model.Title</h4>
+
+        <div class="details">
+            <a href="/Users/Account/@Model.UserId" class="writer_link">
+                <img src="@Model.User.UserImageSrc" width="22" height="22" alt="" class="img-circle">
+                <b>@global.By </b><span>@Model.User.FullName</span>
+            </a>
+            <span class="date">@Model.PublishedDate</span>
+        </div>
+    </div>
+
+    @*@if (User.IsInRole(RoleName.Admins) || User.Identity.GetUserId() == Model.UserId)
+    {
+        <div class="post_actions">
+            <a href="/Posts/Update/@Model.Id">
+                <i class="fa fa-edit fa-lg"></i>
+                @global.Update
+            </a>
+
+            <button type="button" class="remove_post_btn btn-link" data-id="@Model.Id">
+                <i class="fa fa-remove fa-lg"></i>
+                @global.Remove
+            </button>
+        </div>
+    }*@
+</div>

@@ -1,0 +1,49 @@
+﻿@using Khatra.Resources.ViewsResources
+@using Khatra.Models
+
+@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    Model.Name = Model.Name == RoleName.Admins ? global.Admins : global.Publisher;
+    ViewBag.Title = Model.Name;
+
+    ApplicationDbContext context = new ApplicationDbContext();
+}
+<div class="role">
+    <div class="container">
+        <h2 class="@Model.Name">@Model.Name </h2>
+
+        <p class="lead">
+            @global.RoleMsg <span class="@Model.Name">@Model.Name</span>
+        </p>
+
+        @if (Model.Users.Count() == 0)
+        {
+            <div class="alert alert-danger">
+                @global.NoUsersMsg
+            </div>
+        }
+
+        <div class="users text-center">
+            <div class="row">
+                @foreach (var userRole in Model.Users)
+                {
+                    var user = context.Users.Find(userRole.UserId);
+
+                    <div class="col-sm-4 col-md-3">
+                        <div class="user">
+                            <div class="top"></div>
+                            <img src="@user.UserImageSrc" alt="" class="img-circle img-thumbnail userImg" />
+                            <div class="details">
+                                <h5>@Html.ActionLink(user.FullName, "Account", new { id = user.Id })</h5>
+                                <h6>@user.Email</h6>
+                                <h6><i class="fa fa-tasks"></i>  @user.Posts.Count() @global.Posts</h6>
+                                <h6><i class="fa fa-comments-o"></i> @user.Comments.Count() @global.Comments</h6>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

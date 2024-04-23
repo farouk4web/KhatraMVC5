@@ -1,0 +1,40 @@
+﻿@model Khatra.Models.Category
+
+@using Khatra.Resources.ViewsResources
+@{
+    ViewBag.Title = global.Category;
+}
+
+<div class="categoryForm">
+    <div class="container">
+        <div class="col-md-10 col-md-offset-1">
+            <h2>@global.Category</h2>
+
+            @using (Html.BeginForm("Save", "Categories",  FormMethod.Post))
+            {
+                <div class="form-group">
+                    @Html.ValidationSummary(true, global.ErrorsFirst, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control input-lg" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Description)
+                </div>
+                <div class="form-group text-center">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m=>m.Id)
+                    <input type="submit" value="@global.Save" class="btn btn-success siteBtn" />
+                </div>
+            }
+            </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

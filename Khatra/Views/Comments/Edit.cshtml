@@ -1,0 +1,47 @@
+﻿@using Khatra.Resources.ViewsResources
+
+@model Khatra.Models.Comment
+
+@{
+    ViewBag.Title = global.EditComment;
+}
+
+<div class="EditComment">
+    <div class="container">
+
+        <h2 class="formHead">@global.EditComment</h2>
+
+        @using (Html.BeginForm("SaveComment", "Comments"))
+        {
+            <div class="row">
+
+                <div class="col-sm-4 col-md-3">
+                    <img src="@Model.User.UserImageSrc" alt="Alternate Text" hieght="120" width="120" class="userImg img-rounded" />
+                </div>
+
+                <div class="col-sm-8 col-md-9">
+                    <h4>@global.Post: <a href="/posts/read/@Model.PostId">@Model.Post.Title</a></h4>
+                    <h5>@Model.User.FullName</h5>
+                    <span>@Model.PublishedDate</span>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Content)
+                        @Html.TextAreaFor(m => m.Content, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Content)
+                    </div>
+                    <div class="actions txtEnd">
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.Id)
+                        <input type="submit" value="@global.Update" class="btn btn-success siteBtn" />
+                    </div>
+                </div>
+
+            </div>
+        }
+
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

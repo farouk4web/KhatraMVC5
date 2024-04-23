@@ -1,0 +1,44 @@
+﻿@using Khatra.Resources.ViewsResources
+@using Khatra.Models;
+@model Khatra.Models.ApplicationUser
+@{
+    ViewBag.Title = global.Remove;
+}
+
+<div class="removeUser text-center">
+    <div class="container">
+        <div class="user">
+            <img src="@Model.UserImageSrc" alt="" class="img-circle img-thumbnail userImg" />
+            <div class="details">
+                <h3>@Html.ActionLink(Model.FullName, "Account", new { id = Model.Id })</h3>
+                <h6>@Model.Email</h6>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5><i class="fa fa-file-o"></i> @Model.Posts.Count() @global.Posts</h5>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5><i class="fa fa-comments-o"></i> @Model.Comments.Count() @global.Comments</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <hr />
+        <hr />
+
+        <div class="alert alert-danger">
+            <p class="lead">
+                <strong>@global.Danger!</strong> @global.RemoveUserMsg
+            </p>
+        </div>
+
+        @using (Html.BeginForm("RemoveUser", "Users"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            <input type="submit" value="@global.Remove" class="btn btn-danger btn-lg" />
+        }
+
+    </div>
+</div>

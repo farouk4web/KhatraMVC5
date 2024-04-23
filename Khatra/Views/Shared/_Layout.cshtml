@@ -1,0 +1,40 @@
+﻿@using Khatra.Resources.ViewsResources
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="@global.developerRights" />
+    <meta name="description" content="@global.AboutSite1" />
+    <title>@ViewBag.Title - @global.appName</title>
+
+
+    @if (UICulture == "ar-EG")
+    {
+        @Styles.Render("~/Content/css_rtl")
+    }
+    else
+    {
+        @Styles.Render("~/Content/css")
+    }
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @Html.Partial("_Navbar")
+    <div class="bodyContent">
+        @RenderBody()
+    </div>
+
+    @Html.Partial("_Footer")
+
+
+    <span class="hidden" id="removeMsg">@global.RemoveMsg</span>
+    <span class="hidden" id="removeSuccessedMsg">@global.RemoveSuccessedMsg</span>
+
+    @Scripts.Render("~/bundles/libs")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

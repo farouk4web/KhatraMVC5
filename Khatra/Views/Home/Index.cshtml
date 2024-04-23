@@ -1,0 +1,180 @@
+﻿@model Khatra.ViewModels.HomeViewModel
+@using Khatra.Models
+
+@using Khatra.Resources.ViewsResources
+
+@{
+    ViewBag.Title = global.home;
+    ApplicationDbContext context = new ApplicationDbContext();
+}
+
+<!-- start New Posts On Slider -->
+<div class="slider">
+    <div id="sliderImages" class="carousel slide" data-ride="carousel">
+
+        <div class="carousel-inner" role="listbox">
+            @if (Model.NewPosts.Count() == 0)
+            {
+                <div class="item">
+                    <div class="carousel-caption">
+                        <h2 style="color:#fff">@global.NewPosts</h2>
+                        <p class="lead text-center">
+                            @global.NoPostsMsg
+                        </p>
+                    </div>
+                </div>
+            }
+
+            @foreach (var post in Model.NewPosts)
+            {
+                <div class="item">
+                    <img src="~/Uploads/Posts/@post.ImageSrc" alt="...">
+                    <div class="carousel-caption">
+                        <h3>@Html.ActionLink(post.Title, "Read", "Posts", new { id = post.Id }, null)</h3>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#sliderImages" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#sliderImages" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <!-- Controls -->
+
+    </div>
+</div>
+<!-- end New Posts On Slider -->
+<!-- start  Top Read Posts -->
+<div class="TopReadPosts">
+    <div class="container">
+        <h2 class="h1">@global.TopReadPosts</h2>
+        @if (Model.TopReadPosts.Count() == 0)
+        {
+            <p class="lead text-center">
+                @global.NoPostsMsg
+            </p>
+        }
+        <div class="row">
+            @foreach (var post in Model.TopReadPosts)
+            {
+                <div class="col-sm-6 col-md-4">
+                    @Html.Partial("_Post", post)
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<!-- end Top Read Posts -->
+@*<div class="Newslitter center-xs-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <h2>@global.SupscripeToNewslitter</h2>
+                </div>
+                <div class="col-md-7">
+                    <form class="form-inline">
+                        <input type="email" name="email" placeholder="@fields.Email" class="form-control input-lg" />
+                        <input type="submit" value="@global.Subscripe" class="btn btn-success btn-lg" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+<!-- start Top users -->
+<div class="topUsers text-center">
+    <div class="container">
+        <h2 class="h1Center">@global.TopReactUsers</h2>
+        <div class="row">
+            @foreach (var user in Model.TopUsers)
+            {
+                <div class="col-sm-4 col-md-2">
+                    <div class="user">
+                        <a href="/Users/Account/@user.Id" class="window_link"></a>
+                        <img src="@user.UserImageSrc" title="@user.FullName" alt="@user.FullName" class="img-thumbnail img-circle img-responsive" />
+                        <h5>@user.FullName</h5>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- end Top users -->
+<!-- start statistics -->
+<div class="statistics text-center">
+    <div class="overlay">
+        <div class="container">
+            <h2 class="h1Center">@global.Statistics</h2>
+            <div class="row">
+                <div class="col-sm-3">
+                    <i class="fa fa-file-o fa-5x"></i>
+                    <h3>@Model.PostsNumber</h3>
+                    <h4>@global.PostedPosts</h4>
+                </div>
+                <div class="col-sm-3">
+                    <i class="fa fa-users fa-5x"></i>
+                    <h3>@Model.UsersNumber</h3>
+                    <h4>@global.WebSiteUsers</h4>
+                </div>
+                <div class="col-sm-3">
+                    <i class="fa fa-list-alt fa-5x"></i>
+                    <h3>@Model.CategoriesNumber</h3>
+                    <h4>@global.SiteCategories</h4>
+                </div>
+                <div class="col-sm-3">
+                    <i class="fa fa-comments fa-5x"></i>
+                    <h3>@Model.CommentsNumber</h3>
+                    <h4>@global.PostedComments</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end statistics -->
+
+<div class="follow">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 class="h1">@global.FollowHeading</h2>
+                <p class="lead">
+                    @global.FollowParagraph
+                </p>
+            </div>
+            <div class="col-sm-6 text-center">
+
+                <div class="col-sm-6">
+                    <h3><a href="#"><i class="fa fa-facebook fa-5x fa-fw" data-color="#3b5998"></i></a></h3>
+                </div>
+
+                <div class="col-sm-6">
+                    <h3><a href="#"><i class="fa fa-instagram fa-5x fa-fw" data-color="#bc2a8d"></i></a></h3>
+                </div>
+
+                <div class="col-sm-6">
+                    <h3><a href="#"><i class="fa fa-twitter fa-5x fa-fw" data-color="#1da1f2"></i></a></h3>
+                </div>
+
+                <div class="col-sm-6">
+                    <h3><a href="#"><i class="fa fa-youtube fa-5x fa-fw" data-color="#ff0000"></i></a></h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/postActions")
+}

@@ -1,0 +1,228 @@
+﻿@using Microsoft.AspNet.Identity
+@using Khatra.Models
+@using Khatra.Resources.ViewsResources
+
+@model Khatra.ViewModels.ReadPostVM
+@{
+    ViewBag.Title = Model.Post.Title;
+}
+
+<div class="readPost">
+    <div class="container">
+        <div class="col-md-9">
+            <div class="postHeader text-center">
+                <h2 class="text-left h1">@Model.Post.Title</h2>
+
+                <hr />
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img src="@Model.Post.User.UserImageSrc" width="22" height="22" alt="" class="img-circle">
+                        <b>@global.By </b>
+                        <a href="/users/account/@Model.Post.UserId">
+                            @Model.Post.User.FullName
+                        </a>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <i class="fa fa-tasks"></i>
+                        <a href="/Categories/AllPosts/@Model.Post.CategoryId">
+                            @Model.Post.Category.Name
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <i class="fa fa-eye"></i>
+                        <b>@Model.Post.Views</b>
+                        <span>@global.Views</span>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <i class="fa fa-calendar"></i>
+                        <span>@Model.Post.PublishedDate</span>
+                    </div>
+                </div>
+
+                <hr />
+
+                @if (User.IsInRole(RoleName.Admins) || User.Identity.GetUserId() == Model.Post.UserId)
+                {
+                    <div class="post_actions">
+                        <a href="/Posts/Update/@Model.Post.Id">
+                            <i class="fa fa-edit fa-lg"></i> @global.Update
+                        </a>
+
+                        <button type="button" class="remove_post_btn btn-link text-danger" data-id="@Model.Post.Id">
+                            <i class="fa fa-remove fa-lg"></i> @global.Remove
+                        </button>
+
+                        <form action="/posts/RemovePost/" method="post" id="remove_post_form" hidden>
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@Model.Post.Id" />
+                        </form>
+                    </div>
+                }
+            </div>
+
+            <img src="~/Uploads/Posts/@Model.Post.ImageSrc" alt="@Model.Post.Title" class="img-responsive postImage" />
+
+            <div class="postContent">
+                @Html.Raw(HttpUtility.HtmlDecode(Model.Post.Content.ToString()))
+            </div>
+
+            <div class="shareBox">
+                <h4>@global.Share : </h4>
+                <div class="sharethis-inline-share-buttons"></div>
+
+                @*<div class="socialMedia">
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fa fa-facebook fa-fw fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter fa-fw fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram fa-fw fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest fa-fw fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin fa-fw fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus fa-fw fa-lg"></i></a></li>
+                    </ul>
+                </div>*@
+            </div>
+
+            <div class="author">
+                <div class="row">
+                    <div class="col-sm-3 col-md-2">
+                        <a href="/Users/Account/Model.Post.UserId">
+                            <img src="@Model.Post.User.UserImageSrc" alt="Alternate Text" class="userImg" />
+                        </a>
+                    </div>
+                    <div class="col-sm-9 col-md-10">
+                        <h5>@global.AboutTheAuthor</h5>
+                        <h6><a href="/Users/Account/@Model.Post.UserId">@Model.Post.User.FullName</a></h6>
+                        <p>
+                            @Model.Post.User.AboutMe
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="newComment">
+                <h3>@global.Comments</h3>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    using (Html.BeginForm("SaveNewComment", "Comments"))
+                    {
+                        <div class="form-group">
+                            @Html.TextAreaFor(m => m.Comment.Content, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Comment.Content)
+                        </div>
+
+                        <div class="form-group txtEnd">
+                            @Html.Hidden("PostId", Model.Post.Id)
+                            @Html.AntiForgeryToken()
+                            <input type="submit" value="@global.Comment" class="btn btn-success siteBtn" />
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="lead">
+                        @global.LoginToComment ....
+                        <b><a href="/Account/Loginb/">@global.Login</a></b>
+                    </p>
+                }
+            </div>
+
+            @if (Model.Post.Comments.Count() == 0)
+            {
+                <div class="alert alert-warning">
+                    <p class="text-center lead text-danger">
+                        @global.NoCommentsMsg
+                    </p>
+                </div>
+            }
+            else
+            {
+                <div class="comments">
+                    @foreach (var comment in Model.Post.Comments.OrderByDescending(m => m.PublishedDate))
+                    {
+                        <div class="comment">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-2">
+                                    <img src="@comment.User.UserImageSrc" alt="Alternate Text" class="userImg" />
+                                </div>
+
+                                <div class="col-sm-9 col-md-10">
+                                    <h5>
+                                        <a href="/Users/Account/@comment.UserId">
+                                            @comment.User.FullName
+                                        </a>
+                                    </h5>
+                                    <span>@comment.PublishedDate</span>
+                                    <p>
+                                        @comment.Content
+                                    </p>
+
+                                    @if (User.IsInRole(RoleName.Admins) || User.Identity.GetUserId() == comment.UserId)
+                                    {
+                                        <div class="actions txtEnd">
+                                            <a href="/comments/edit/@comment.Id">
+                                                <i class="fa fa-edit fa-lg"></i>
+                                            </a>
+
+                                            <a href="#" class="js_remove_comment" data-id="@comment.Id">
+                                                <i class="fa fa-trash-o fa-lg"></i>
+                                            </a>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
+        </div>
+
+        <div class="col-md-3">
+            <div class="LatestPosts text-center">
+                <h3>@global.LatestPosts</h3>
+                @foreach (var latestPost in Model.LatestPosts)
+                {
+                    <div class="LatestPost">
+                        <a href="/posts/read/@latestPost.Id">
+                            <img src="~/Uploads/Posts/@latestPost.ImageSrc" alt="@latestPost.Title" title="@latestPost.Title" class="img-thumbnail" />
+                        </a>
+                        <h5>
+                            <a href="/posts/read/@latestPost.Id">@latestPost.Title</a>
+                        </h5>
+                    </div>
+                }
+            </div>
+
+            <div class="LatestAuthorPosts text-center">
+                <h3>@global.AuthorPosts</h3>
+                @foreach (var LatestAuthorPost in Model.AuthorPosts)
+                {
+                    <div class="LatestPost">
+                        <a href="/posts/read/@LatestAuthorPost.Id">
+                            <img src="~/Uploads/Posts/@LatestAuthorPost.ImageSrc" alt="@LatestAuthorPost.Title" title="@LatestAuthorPost.Title" class="img-thumbnail" />
+                        </a>
+                        <h5>
+                            <a href="/posts/read/@LatestAuthorPost.Id">@LatestAuthorPost.Title</a>
+                        </h5>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=62f6bb327db1160019f42504&product=inline-share-buttons" async="async"></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/readPost")
+    @Scripts.Render("~/bundles/comments")
+}

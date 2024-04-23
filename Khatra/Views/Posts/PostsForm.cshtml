@@ -1,0 +1,60 @@
+﻿@model Khatra.ViewModels.PostsForm
+@using Khatra.Resources.ViewsResources
+@{
+    ViewBag.Title = Model.Title;
+}
+<div class="postsForm">
+    <div class="container">
+
+        <h2>@Model.Title</h2>
+        @using (Html.BeginForm("Save", "Posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div>
+                @Html.ValidationSummary(true, global.ErrorsFirst, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Post.Title)
+                @Html.TextBoxFor(m => m.Post.Title, new { @class = "form-control input-lg" })
+                @Html.ValidationMessageFor(m => m.Post.Title)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Post.CategoryId)
+                @Html.DropDownListFor(m => m.Post.CategoryId, new SelectList(Model.Categories, "Id", "Name"), global.Category, new { @class = "form-control input-lg" })
+                @Html.ValidationMessageFor(m => m.Post.CategoryId)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Post.ImageSrc)
+                <input type="file" name="mainPostImage" accept="image/*" class="form-control input-lg" />
+                @Html.ValidationMessageFor(m => m.Post.ImageSrc)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Post.Content)
+                @Html.TextAreaFor(m => m.Post.Content, new { @class = "form-control", id = "content" })
+                @Html.ValidationMessageFor(m => m.Post.Content)
+            </div>
+            <div class="form-group text-center">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Post.Id)
+                <input type="submit" value="@global.Save" class="btn btn-success siteBtn" />
+            </div>
+        }
+
+    </div>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/editor")
+    <script>
+        $(document).ready(function () {
+            $("#content").summernote({
+                height: 400     
+            });
+        });
+    </script>
+}

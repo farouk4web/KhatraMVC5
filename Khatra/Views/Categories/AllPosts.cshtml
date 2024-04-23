@@ -1,0 +1,61 @@
+﻿@using Khatra.Models
+@using Microsoft.AspNet.Identity
+@using Khatra.Resources.ViewsResources
+
+@model Khatra.Models.Category
+@{
+    ViewBag.Title = global.AllPosts;
+}
+
+<div class="allPosts">
+
+    <div class="container">
+        <div class="head">
+            <h2 class="text-left">@Model.Name</h2>
+            <h6>@global.ThisCategoryContain @Model.Posts.Count() @global.Post</h6>
+            <hr />
+
+            <p>
+                @Model.Description
+            </p>
+
+            @if (User.IsInRole(RoleName.Admins))
+            {
+                <div class="category_actions">
+                    @Html.ActionLink(global.Update, "Update", "Categories", new { id = Model.Id }, new { title = global.Update, @class = "btn btn-primary" })
+                    <button class="remove_category_btn btn btn-danger" data-id="@Model.Id">@global.Remove</button>
+                </div>
+
+                <form action="/categories/remove/" method="post" id="remove_category_form">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    @Html.AntiForgeryToken()
+                </form>
+            }
+
+            @if (Model.Posts.Count() == 0)
+            {
+                <br />
+                <div class="alert alert-danger">
+                    <p class="lead text-danger">
+                        @global.NoPostsMsg
+                    </p>
+                </div>
+            }
+        </div>
+
+        <hr />
+
+        <div class="row">
+            @foreach (var post in Model.Posts)
+            {
+                <div class="col-sm-4">
+                    @Html.Partial("_Post", post)
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/categories")
+    @Scripts.Render("~/bundles/postActions")
+}

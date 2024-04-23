@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="appName" xml:space="preserve">
+    <value>Khatra</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="developer" xml:space="preserve">
+    <value>Farouk Abdelhamid</value>
+  </data>
+  <data name="developerRights" xml:space="preserve">
+    <value>Designed and developed by</value>
+  </data>
+  <data name="khawatr" xml:space="preserve">
+    <value>Khawatr</value>
+  </data>
+  <data name="NoPostsMsg" xml:space="preserve">
+    <value>sorry we dont have any posts yet!</value>
+  </data>
+  <data name="Posts" xml:space="preserve">
+    <value>Articles</value>
+  </data>
+  <data name="NewPost" xml:space="preserve">
+    <value>New Post</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="NewCategory" xml:space="preserve">
+    <value>New Category</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="RemoveCategory" xml:space="preserve">
+    <value>Remove Category</value>
+  </data>
+  <data name="RemoveMsg" xml:space="preserve">
+    <value>Are you sure you want to REMOVE this?</value>
+  </data>
+  <data name="RemoveSuccessedMsg" xml:space="preserve">
+    <value>Nice, Removed Successfully</value>
+  </data>
+  <data name="Vision" xml:space="preserve">
+    <value>Find What You Need here and Only</value>
+  </data>
+  <data name="NoCommentsMsg" xml:space="preserve">
+    <value>No Comments here yet, you can add one, Just Go to Any Post you like it and say your openion.</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="NewComment" xml:space="preserve">
+    <value>New Comment</value>
+  </data>
+  <data name="AllPosts" xml:space="preserve">
+    <value>All Posts in Category</value>
+  </data>
+  <data name="EditComment" xml:space="preserve">
+    <value>Edit Comment</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log off</value>
+  </data>
+  <data name="Post" xml:space="preserve">
+    <value>Article</value>
+  </data>
+  <data name="haveAccount" xml:space="preserve">
+    <value>have an account?</value>
+  </data>
+  <data name="NoUsersMsg" xml:space="preserve">
+    <value>sorry we dont have any Users yet!</value>
+  </data>
+  <data name="Danger" xml:space="preserve">
+    <value>Danger</value>
+  </data>
+  <data name="RemoveUserMsg" xml:space="preserve">
+    <value>you are going to remove this user ,this action going to remove all posts and comments are related with this user and you cant recovery it be careful</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="RoleMsg" xml:space="preserve">
+    <value>On this page you can find all </value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>Publisher</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="AllCategories" xml:space="preserve">
+    <value>All Categories</value>
+  </data>
+  <data name="AboutMeDefaultContent" xml:space="preserve">
+    <value>welcome on my account on khatra site, this text can changed any time if account awner do it.</value>
+  </data>
+  <data name="NoCategoryMsg" xml:space="preserve">
+    <value>sorry we dont have any Categories yet!</value>
+  </data>
+  <data name="UserDontHavePosts" xml:space="preserve">
+    <value>this user does not Published any posts yet</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="AddressContent" xml:space="preserve">
+    <value>Nasr City / Cairo, Egypt</value>
+  </data>
+  <data name="ContactWithUs" xml:space="preserve">
+    <value>Contact With Us</value>
+  </data>
+  <data name="MsgSent" xml:space="preserve">
+    <value>Message Was Sent Succssefully.</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Subscripe" xml:space="preserve">
+    <value>Subscripe</value>
+  </data>
+  <data name="SupscripeToNewslitter" xml:space="preserve">
+    <value>Supscripe To Newslitter</value>
+  </data>
+  <data name="ChangePersonalImage" xml:space="preserve">
+    <value>Change personal image</value>
+  </data>
+  <data name="PasswordChangedMsg" xml:space="preserve">
+    <value>Your password has been changed</value>
+  </data>
+  <data name="AccountSettings" xml:space="preserve">
+    <value>Acoount Settings</value>
+  </data>
+  <data name="AdminMenu" xml:space="preserve">
+    <value>Admin Menu</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>My Acoount</value>
+  </data>
+  <data name="ConfirmMsg" xml:space="preserve">
+    <value>please confirm your account by clicking following link</value>
+  </data>
+  <data name="ConfirmYourAccount" xml:space="preserve">
+    <value>Confirm your account</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="ClickheretoLogin" xml:space="preserve">
+    <value>Click here to Log in</value>
+  </data>
+  <data name="Forgotpassword" xml:space="preserve">
+    <value>Forgot your password</value>
+  </data>
+  <data name="ForgotPasswordConfirmation" xml:space="preserve">
+    <value>Forgot Password Confirmation</value>
+  </data>
+  <data name="ForgotPasswordConfirmationMsg" xml:space="preserve">
+    <value> to reset your password
+                Please check your email, if you dont find any messages from us so mybe you are not recorded in our database or your email are not confirmed yet;</value>
+  </data>
+  <data name="ForgotPasswordConfirmationWarning" xml:space="preserve">
+    <value>we send to your email an message with link</value>
+  </data>
+  <data name="ForgotpasswordMsg" xml:space="preserve">
+    <value>if you forgot your password you need olay to put your email and bress the button</value>
+  </data>
+  <data name="SuccessConfirmeEmail" xml:space="preserve">
+    <value>Success Confirme Email</value>
+  </data>
+  <data name="SuccessConfirmeEmailMsg" xml:space="preserve">
+    <value>your email confirmed successfully</value>
+  </data>
+  <data name="AboutFounder1" xml:space="preserve">
+    <value>hi my name is farouk abdelhamid iam the owner of this site you can contact with me on social media any time</value>
+  </data>
+  <data name="AboutFounder2" xml:space="preserve">
+    <value>Iam web developer i have many sites i was created before if you want from me to create a one for you all you need is juast contact with me on my social media accounts</value>
+  </data>
+  <data name="AboutSite1" xml:space="preserve">
+    <value>it is a big bolg, we try from it to push up knowledge level to arabian world on genral and for youth Especially, because they are future Builders</value>
+  </data>
+  <data name="AboutSite2" xml:space="preserve">
+    <value>and with care from us to all pepole to cover all fields we employ many pepole from articles publishers every one from them specialized in his field ,and this because we are care and we dont want from Khatra To be Source to fuck information and bad source,khatra going to be the big and trusted source in all fildes</value>
+  </data>
+  <data name="AboutMe" xml:space="preserve">
+    <value>About Me</value>
+  </data>
+  <data name="ConfirmWarniingMsg" xml:space="preserve">
+    <value>please confirm your email to use it wheen change password,just go to your email and press on our message we snd it and press "confirm"</value>
+  </data>
+  <data name="LoginProplemMsg" xml:space="preserve">
+    <value>wrong email or password, try again </value>
+  </data>
+  <data name="ChangeLangugeMsg" xml:space="preserve">
+    <value>Change Languge as you want</value>
+  </data>
+  <data name="RegisterAsNew" xml:space="preserve">
+    <value>Register as a new user</value>
+  </data>
+  <data name="ErrorsFirst" xml:space="preserve">
+    <value>Please Fix This Errors first</value>
+  </data>
+  <data name="UpdatePost" xml:space="preserve">
+    <value>Update Post</value>
+  </data>
+  <data name="AboutTheAuthor" xml:space="preserve">
+    <value>About the author</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share the Post On Social Media Accounts</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Site Statistics</value>
+  </data>
+  <data name="TopReactUsers" xml:space="preserve">
+    <value>Top React Users</value>
+  </data>
+  <data name="TopReadPosts" xml:space="preserve">
+    <value>Top Read Posts</value>
+  </data>
+  <data name="FollowHeading" xml:space="preserve">
+    <value>Follow Us on Social Media</value>
+  </data>
+  <data name="FollowParagraph" xml:space="preserve">
+    <value>Follow khatra site on social media sites when bress the following buttons to take you to offishial site pages </value>
+  </data>
+  <data name="PostedComments" xml:space="preserve">
+    <value>Posted Comments</value>
+  </data>
+  <data name="PostedPosts" xml:space="preserve">
+    <value>Posted Articles</value>
+  </data>
+  <data name="SiteCategories" xml:space="preserve">
+    <value>Site Categories</value>
+  </data>
+  <data name="WebSiteUsers" xml:space="preserve">
+    <value>Web Site Users</value>
+  </data>
+  <data name="AuthorPosts" xml:space="preserve">
+    <value>Author Posts</value>
+  </data>
+  <data name="LatestPosts" xml:space="preserve">
+    <value>Latest Posts</value>
+  </data>
+  <data name="NewPosts" xml:space="preserve">
+    <value>New Posts</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="LoginToComment" xml:space="preserve">
+    <value>if you want to comment, you need to login first</value>
+  </data>
+  <data name="ValidEmail" xml:space="preserve">
+    <value>Sorry you shold use email adress like  "Gmail, Outlooj, Yahoo, hotmail</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="ThisCategoryContain" xml:space="preserve">
+    <value>This Article Contain</value>
+  </data>
+  <data name="AllCommentsOnAllPosts" xml:space="preserve">
+    <value>All comments On all Posts</value>
+  </data>
+  <data name="AddToAdmins" xml:space="preserve">
+    <value>Add To Admins</value>
+  </data>
+  <data name="AddToPublisher" xml:space="preserve">
+    <value>Add To Publisher</value>
+  </data>
+  <data name="RemoveFromAdmins" xml:space="preserve">
+    <value>Remove From Admins</value>
+  </data>
+  <data name="RemoveFromPublisher" xml:space="preserve">
+    <value>Remove From Publisher</value>
+  </data>
+  <data name="AboutFounder3" xml:space="preserve">
+    <value>You Can see my latest Projects on my portfolio</value>
+  </data>
+  <data name="here" xml:space="preserve">
+    <value>here</value>
+  </data>
+  <data name="SiteLanguage" xml:space="preserve">
+    <value>Site Language</value>
+  </data>
+  <data name="Admins" xml:space="preserve">
+    <value>Admins</value>
+  </data>
+  <data name="Publishers" xml:space="preserve">
+    <value>Publishers</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="aboutMeDescription" xml:space="preserve">
+    <value>this words going to shown side your photo in your account</value>
+  </data>
+</root>

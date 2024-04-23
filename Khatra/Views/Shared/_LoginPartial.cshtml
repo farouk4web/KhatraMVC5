@@ -1,0 +1,73 @@
+﻿@using Khatra.Resources.ViewsResources
+
+@using Khatra.Models
+@using Microsoft.AspNet.Identity
+
+
+@if (Request.IsAuthenticated)
+{
+    ApplicationDbContext context = new ApplicationDbContext();
+    var user = context.Users.Find(User.Identity.GetUserId());
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            @if (User.IsInRole(RoleName.Admins) || User.IsInRole(RoleName.Publishers))
+            {
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        @global.AdminMenu
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            @Html.ActionLink(global.NewPost, "new", "Posts")
+                        </li>
+                        <li>
+                            @Html.ActionLink(global.NewCategory, "new", "Categories")
+                        </li>
+                        <li>
+                            @Html.ActionLink(global.Comments, "Index", "Comments")
+                        </li>
+                        <li>
+                            @Html.ActionLink(global.Users, "Index", "Users")
+                        </li>
+                        <li>
+                            <a href="/users/Role?name=@RoleName.Admins">@global.Admins</a>
+                        </li>
+                        <li>
+                            <a href="/users/Role?name=@RoleName.Publishers">@global.Publishers</a>
+                        </li>
+
+                        @if (User.IsInRole(RoleName.Admins))
+                        {
+                            <li>
+                                @Html.ActionLink(global.SiteLanguage, "ChangeLanguage", "Home")
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    @user.FullName
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink(global.MyAccount, "account", "Users", new { id = user.Id }, new { title = global.MyAccount })</li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">@global.LogOff</a></li>
+                </ul>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink(global.Register, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink(global.Login, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
